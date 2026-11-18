@@ -871,7 +871,7 @@ export default function Home() {
           {/* Bas du footer */}
           <div className="mt-12 flex flex-col items-center justify-center gap-4 border-t border-white/10 pt-7 text-center">
             <p className="text-xs text-gray-500 sm:text-sm">
-               {new Date().getFullYear()} NOVYRA IT. Tous droits réservés.
+             
             </p>
 
             <p className="text-xs font-medium tracking-wide text-gray-400 sm:text-sm">
