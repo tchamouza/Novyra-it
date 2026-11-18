@@ -385,7 +385,9 @@ export default function Home() {
 
           <div className="mt-16 grid max-w-4xl grid-cols-2 gap-x-4 gap-y-7 border-t border-white/15 pt-7 sm:mt-20 sm:grid-cols-4 sm:gap-8 sm:pt-8">
             <div>
-              <p className="text-2xl font-black text-cyan-400 sm:text-3xl">06</p>
+              <p className="text-2xl font-black text-cyan-400 sm:text-3xl">
+                06
+              </p>
               <p className="mt-2 text-xs text-gray-400 sm:text-sm">
                 Domaines d'expertise
               </p>
@@ -413,7 +415,10 @@ export default function Home() {
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="scroll-mt-20 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
+      <section
+        id="services"
+        className="scroll-mt-20 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28"
+      >
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-cyan-400 sm:text-sm sm:tracking-[0.3em]">
@@ -424,8 +429,8 @@ export default function Home() {
               <span className="text-gray-500"> Un partenaire.</span>
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-7 text-gray-400 sm:mt-6 sm:text-lg sm:leading-8">
-              De l'installation de vos infrastructures à leur maintenance,
-              en passant par l'administration systèmes et la sécurité de vos
+              De l'installation de vos infrastructures à leur maintenance, en
+              passant par l'administration systèmes et la sécurité de vos
               équipements, NOVYRA IT vous accompagne dans vos projets
               technologiques.
             </p>
@@ -469,7 +474,9 @@ export default function Home() {
                           key={index}
                           className="flex items-start gap-3 text-sm leading-6 text-gray-400"
                         >
-                          <span className="mt-0.5 shrink-0 text-cyan-400">↗</span>
+                          <span className="mt-0.5 shrink-0 text-cyan-400">
+                            ↗
+                          </span>
                           <span>{detail}</span>
                         </li>
                       ))}
@@ -538,14 +545,13 @@ export default function Home() {
               <p>
                 Nous souhaitons accompagner nos clients dans leurs projets
                 informatiques, qu'il s'agisse de mettre en place une
-                infrastructure réseau, de sécuriser des équipements,
-                d'installer un système de vidéosurveillance ou d'entretenir
-                un ordinateur.
+                infrastructure réseau, de sécuriser des équipements, d'installer
+                un système de vidéosurveillance ou d'entretenir un ordinateur.
               </p>
               <p>
                 Notre approche repose sur l'écoute, l'analyse du besoin, la
-                recherche de solutions adaptées et un accompagnement technique
-                à chaque étape du projet.
+                recherche de solutions adaptées et un accompagnement technique à
+                chaque étape du projet.
               </p>
             </div>
 
@@ -616,9 +622,9 @@ export default function Home() {
               Du besoin à la solution.
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-7 text-gray-400 sm:mt-6 sm:text-lg sm:leading-8">
-              Nous privilégions une démarche structurée afin de comprendre
-              vos attentes, planifier les interventions, réaliser le projet
-              et vérifier les résultats.
+              Nous privilégions une démarche structurée afin de comprendre vos
+              attentes, planifier les interventions, réaliser le projet et
+              vérifier les résultats.
             </p>
           </div>
 
@@ -696,8 +702,8 @@ export default function Home() {
             </h2>
             <p className="mt-5 max-w-lg leading-7 text-gray-400 sm:mt-6 sm:leading-8">
               Découvrez les réponses aux questions les plus fréquentes
-              concernant nos services, nos prestations et la manière de
-              démarrer votre projet avec NOVYRA IT.
+              concernant nos services, nos prestations et la manière de démarrer
+              votre projet avec NOVYRA IT.
             </p>
 
             <WhatsAppLink
@@ -817,60 +823,61 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-white/10 bg-[#050d17] px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
+
+      <footer className="border-t border-white/10 bg-[#050d17] px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 gap-9 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
-            <div>
+          {/* Contenu principal */}
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-16">
+            {/* Présentation */}
+            <div className="flex flex-col items-center text-center lg:col-span-2">
               <Brand />
-              <p className="mt-5 max-w-sm text-sm leading-7 text-gray-500">
-                Solutions informatiques, infrastructures réseau,
-                administration systèmes, cybersécurité et maintenance
-                informatique.
+
+              <p className="mt-5 max-w-lg text-sm leading-7 text-gray-400">
+                Solutions informatiques, infrastructures réseau, administration
+                systèmes, cybersécurité et maintenance informatique.
               </p>
-              <p className="mt-5 font-semibold text-cyan-400">
+
+              <p className="mt-5 text-sm font-semibold tracking-wide text-cyan-400">
                 Connecter. Administrer. Protéger.
               </p>
             </div>
 
-            <div>
-              <h3 className="font-bold">Navigation</h3>
-              <div className="mt-5 flex flex-col gap-3 text-sm text-gray-500">
-                {navigation.map(([label, href]) => (
-                  <a
-                    key={href}
-                    href={href}
-                    className="transition hover:text-cyan-400"
-                  >
-                    {label}
-                  </a>
-                ))}
-              </div>
-            </div>
+            {/* Contact */}
+            <div className="flex flex-col items-center text-center">
+              <h3 className="text-lg font-bold text-white">Nous contacter</h3>
 
-            <div>
-              <h3 className="font-bold">Nous contacter</h3>
-              <div className="mt-5 flex flex-col gap-4 break-words text-sm text-gray-500">
+              <div className="mt-6 flex flex-col items-center gap-5 text-sm text-gray-400">
                 <a
                   href={`https://wa.me/${PHONE}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="transition hover:text-cyan-400"
                 >
                   WhatsApp : +228 98 01 05 55
                 </a>
+
                 <a
                   href={`mailto:${EMAIL}`}
-                  className="transition hover:text-cyan-400"
+                  className="break-all transition hover:text-cyan-400"
                 >
                   {EMAIL}
                 </a>
+
                 <p>Lomé, Togo</p>
               </div>
             </div>
           </div>
-                
-          <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-white/10 pt-6 text-xs text-gray-600 sm:mt-12 sm:flex-row sm:items-center sm:pt-7 sm:text-sm">
-                <p>© 2026 NOVYRA IT. Tous droits réservés.</p>
-                <p>Connecter. Administrer. Protéger.</p>
-            </div>
+
+          {/* Bas du footer */}
+          <div className="mt-12 flex flex-col items-center justify-center gap-4 border-t border-white/10 pt-7 text-center">
+            <p className="text-xs text-gray-500 sm:text-sm">
+              © {new Date().getFullYear()} NOVYRA IT. Tous droits réservés.
+            </p>
+
+            <p className="text-xs font-medium tracking-wide text-gray-400 sm:text-sm">
+              Connecter. Administrer. Protéger.
+            </p>
+          </div>
         </div>
       </footer>
 
