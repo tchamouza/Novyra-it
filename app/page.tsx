@@ -1,7 +1,30 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import Image from "next/image";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Check,
+  ChevronLeft,
+  ChevronRight,
+  Cctv,
+  Cpu,
+  Mail,
+  MapPin,
+  Menu,
+  Network,
+  Phone,
+  Server,
+  ShieldCheck,
+  Wrench,
+  X,
+  Building2,
+  UserRound,
+  BriefcaseBusiness,
+  Users,
+  Settings,
+} from "lucide-react";
 
 const PHONE = "22898010555";
 const EMAIL = "novyra01it@gmail.com";
@@ -17,117 +40,134 @@ const navigation = [
 const services = [
   {
     number: "01",
-    title: "Réseaux & câblage",
-    image: "/images/services/network.jpg",
+    title: "Réseaux informatiques & câblage",
+    icon: Network,
+    images: [
+      "/images/services/network-1.jpg",
+      "/images/services/network-2.jpg",
+      "/images/services/network-3.jpg",
+      "/images/services/network-4.jpg",
+    ],
     description:
-      "Conception, installation et organisation des infrastructures réseau pour les particuliers et les entreprises.",
+      "Conception, installation et optimisation de vos infrastructures réseau.",
     details: [
-      "Installation et câblage Ethernet RJ45",
-      "Installation de prises réseau",
-      "Configuration de switchs et routeurs",
-      "Organisation de baies et panneaux de brassage",
-      "Configuration de réseaux LAN et Wi-Fi",
-      "Extension et optimisation des réseaux existants",
+      "Installation et configuration réseau LAN/WAN",
+      "Câblage informatique et brassage RJ45",
+      "Configuration de switches et routeurs",
+      "Segmentation réseau et VLAN",
     ],
   },
   {
     number: "02",
     title: "Administration systèmes",
-    image: "/images/services/systems.jpg",
+    icon: Server,
+    images: [
+      "/images/services/systems-1.jpg",
+      "/images/services/systems-2.jpg",
+      "/images/services/systems-3.jpg",
+    ],
     description:
-      "Déploiement, configuration et administration des systèmes informatiques et environnements serveurs.",
+      "Administration et gestion de vos environnements informatiques.",
     details: [
-      "Installation Windows et Linux",
-      "Configuration Windows Server",
-      "Active Directory et gestion des utilisateurs",
-      "DNS, DHCP et stratégies de groupe",
-      "Virtualisation VMware et Hyper-V",
-      "Administration et maintenance des serveurs",
+      "Installation de serveurs Windows et Linux",
+      "Gestion des utilisateurs et Active Directory",
+      "Configuration DNS, DHCP et GPO",
+      "Virtualisation et supervision",
     ],
   },
   {
     number: "03",
     title: "Cybersécurité",
-    image: "/images/services/cybersecurity.jpg",
+    icon: ShieldCheck,
+    images: [
+      "/images/services/cybersecurity-1.jpg",
+      "/images/services/cybersecurity-2.jpg",
+      "/images/services/cybersecurity-3.jpg",
+    ],
     description:
-      "Amélioration de la sécurité de vos systèmes, réseaux, équipements et données informatiques.",
+      "Protection et sécurisation de vos infrastructures informatiques.",
     details: [
       "Configuration de pare-feu",
-      "Sécurisation des réseaux informatiques",
-      "Gestion des accès et permissions",
-      "Surveillance des infrastructures",
-      "Analyse de configuration de sécurité",
-      "Sensibilisation aux bonnes pratiques",
+      "Surveillance et analyse des événements",
+      "Détection des menaces",
+      "Audit et sécurisation des systèmes",
     ],
   },
   {
     number: "04",
     title: "Vidéosurveillance",
-    image: "/images/services/surveillance.jpg",
+    icon: Cctv,
+    images: [
+      "/images/services/surveillance-1.jpg",
+      "/images/services/surveillance-2.jpg",
+      "/images/services/surveillance-3.jpg",
+    ],
     description:
-      "Installation et configuration de solutions de surveillance pour protéger vos locaux et vos biens.",
+      "Installation et configuration de solutions de vidéosurveillance.",
     details: [
-      "Installation de caméras IP",
-      "Installation de caméras analogiques",
-      "Configuration DVR, NVR et XVR",
-      "Visualisation à distance",
-      "Installation et organisation du câblage",
-      "Maintenance des équipements de surveillance",
+      "Installation de caméras IP et analogiques",
+      "Configuration NVR et DVR",
+      "Accès et visualisation à distance",
+      "Maintenance des systèmes de surveillance",
     ],
   },
   {
     number: "05",
     title: "Maintenance informatique",
-    image: "/images/services/maintenance.jpg",
-    description:
-      "Diagnostic, entretien, dépannage et optimisation de vos équipements informatiques.",
+    icon: Wrench,
+    images: [
+      "/images/services/maintenance-1.jpg",
+      "/images/services/maintenance-2.jpg",
+      "/images/services/maintenance-3.jpg",
+    ],
+    description: "Maintenance préventive et corrective de vos équipements.",
     details: [
-      "Diagnostic de panne informatique",
-      "Maintenance matérielle et logicielle",
-      "Installation de systèmes d'exploitation",
-      "Optimisation des ordinateurs",
-      "Installation et configuration de logiciels",
-      "Assistance et conseils techniques",
+      "Diagnostic matériel et logiciel",
+      "Installation et configuration des systèmes",
+      "Optimisation des performances",
+      "Maintenance des ordinateurs",
     ],
   },
   {
     number: "06",
     title: "Solutions informatiques",
-    image: "/images/services/solutions.jpg",
-    description:
-      "Accompagnement technique et mise en place de solutions informatiques adaptées à vos besoins.",
+    icon: Cpu,
+    images: [
+      "/images/services/solutions-1.jpg",
+      "/images/services/solutions-2.jpg",
+      "/images/services/solutions-3.jpg",
+    ],
+    description: "Accompagnement et mise en œuvre de solutions technologiques.",
     details: [
-      "Virtualisation des environnements informatiques",
-      "Déploiement de solutions techniques",
-      "Conseil en équipements informatiques",
-      "Assistance aux projets IT",
-      "Configuration de logiciels et outils",
-      "Accompagnement à la transformation numérique",
+      "Conseil et accompagnement informatique",
+      "Déploiement de solutions professionnelles",
+      "Intégration des équipements",
+      "Assistance et support technique",
     ],
   },
 ];
 
 const reasons = [
   {
-    icon: "◈",
+    icon: Settings,
     title: "Solutions personnalisées",
     description:
       "Nous étudions vos besoins pour proposer une solution adaptée à votre activité, à votre environnement et à votre budget.",
   },
   {
-    icon: "⌘",
+    icon: Cpu,
     title: "Approche technique",
     description:
       "Nous privilégions une approche structurée, fondée sur l'analyse, la planification et la mise en œuvre de solutions cohérentes.",
   },
   {
-    icon: "⬡",
+    icon: ShieldCheck,
     title: "Fiabilité & sécurité",
     description:
       "Nous accordons une attention particulière à la sécurité, à l'organisation et à la stabilité de vos équipements et infrastructures.",
   },
   {
-    icon: "↗",
+    icon: Users,
     title: "Accompagnement",
     description:
       "Nous vous accompagnons dans la compréhension de vos solutions et vous apportons des conseils adaptés à vos projets.",
@@ -163,26 +203,26 @@ const steps = [
 
 const sectors = [
   {
+    icon: Building2,
     title: "Entreprises & PME",
-    icon: "▥",
     description:
       "Infrastructure réseau, administration systèmes, sécurité, maintenance et solutions informatiques.",
   },
   {
+    icon: BriefcaseBusiness,
     title: "Entrepreneurs",
-    icon: "◫",
     description:
       "Accompagnement informatique, installation d'équipements et solutions adaptées à votre activité.",
   },
   {
+    icon: UserRound,
     title: "Particuliers",
-    icon: "⌂",
     description:
       "Installation réseau, vidéosurveillance, maintenance informatique et assistance technique.",
   },
   {
+    icon: Users,
     title: "Associations & projets",
-    icon: "◇",
     description:
       "Accompagnement informatique, déploiement de solutions et support technique adapté.",
   },
@@ -230,9 +270,11 @@ function WhatsAppLink({
   message?: string;
   className?: string;
 }) {
+  const url = `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`;
+
   return (
     <a
-      href={`https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`}
+      href={url}
       target="_blank"
       rel="noopener noreferrer"
       className={className}
@@ -270,6 +312,111 @@ function Brand() {
   );
 }
 
+function ServiceGallery({
+  images,
+  title,
+}: {
+  images: string[];
+  title: string;
+}) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
+
+    const interval = window.setInterval(() => {
+      setCurrentIndex((previous) => (previous + 1) % images.length);
+    }, 15000);
+
+    return () => window.clearInterval(interval);
+  }, [images.length]);
+
+  const previousImage = () => {
+    setCurrentIndex(
+      (previous) => (previous - 1 + images.length) % images.length,
+    );
+  };
+
+  const nextImage = () => {
+    setCurrentIndex((previous) => (previous + 1) % images.length);
+  };
+
+  if (images.length === 0) {
+    return (
+      <div className="flex h-52 items-center justify-center bg-[#102b40] text-gray-400 sm:h-60 lg:h-64">
+        <Network size={42} />
+      </div>
+    );
+  }
+
+  return (
+    <div className="group/gallery relative h-52 overflow-hidden sm:h-60 lg:h-64">
+      <div
+        className="flex h-full transition-transform duration-700 ease-in-out"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {images.map((image, index) => (
+          <div key={image} className="relative h-full min-w-full">
+            <Image
+              src={image}
+              alt={`${title} - photo ${index + 1}`}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover"
+            />
+          </div>
+        ))}
+      </div>
+
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0b1928]/60 via-transparent to-transparent" />
+
+      <span className="absolute left-4 top-4 z-10 rounded-lg border border-white/20 bg-[#07111f]/70 px-3 py-2 text-xs text-white backdrop-blur-md">
+        {String(currentIndex + 1).padStart(2, "0")} /{" "}
+        {String(images.length).padStart(2, "0")}
+      </span>
+
+      {images.length > 1 && (
+        <>
+          <button
+            type="button"
+            onClick={previousImage}
+            aria-label={`Photo précédente : ${title}`}
+            className="absolute left-3 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[#07111f]/70 text-white opacity-100 backdrop-blur-md transition hover:bg-cyan-400 hover:text-[#07111f] sm:opacity-0 sm:group-hover/gallery:opacity-100"
+          >
+            <ChevronLeft size={20} />
+          </button>
+
+          <button
+            type="button"
+            onClick={nextImage}
+            aria-label={`Photo suivante : ${title}`}
+            className="absolute right-3 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[#07111f]/70 text-white opacity-100 backdrop-blur-md transition hover:bg-cyan-400 hover:text-[#07111f] sm:opacity-0 sm:group-hover/gallery:opacity-100"
+          >
+            <ChevronRight size={20} />
+          </button>
+
+          <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                type="button"
+                onClick={() => setCurrentIndex(index)}
+                aria-label={`Afficher la photo ${index + 1} de ${title}`}
+                aria-current={currentIndex === index ? "true" : undefined}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  currentIndex === index
+                    ? "w-7 bg-cyan-400"
+                    : "w-2 bg-white/60 hover:bg-white"
+                }`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [faqOpen, setFaqOpen] = useState<number | null>(0);
@@ -296,7 +443,7 @@ export default function Home() {
           </nav>
 
           <WhatsAppLink className="hidden whitespace-nowrap rounded-lg bg-cyan-400 px-4 py-3 text-sm font-bold text-[#07111f] transition hover:bg-cyan-300 lg:inline-flex">
-            Demander un devis ↗
+            Demander un devis <ArrowUpRight size={17} className="ml-2" />
           </WhatsAppLink>
 
           <button
@@ -304,9 +451,9 @@ export default function Home() {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
             aria-expanded={menuOpen}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/10 text-2xl lg:hidden"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/10 text-white lg:hidden"
           >
-            {menuOpen ? "×" : "☰"}
+            {menuOpen ? <X size={23} /> : <Menu size={23} />}
           </button>
         </div>
 
@@ -324,8 +471,9 @@ export default function Home() {
                 </a>
               ))}
 
-              <WhatsAppLink className="mt-2 rounded-xl bg-cyan-400 px-5 py-3 text-center font-bold text-[#07111f]">
-                Demander un devis ↗
+              <WhatsAppLink className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-cyan-400 px-5 py-3 text-center font-bold text-[#07111f]">
+                <Phone size={17} />
+                Demander un devis
               </WhatsAppLink>
             </nav>
           </div>
@@ -338,9 +486,9 @@ export default function Home() {
         className="relative flex min-h-[720px] scroll-mt-20 items-center bg-cover bg-center px-4 pb-16 pt-32 sm:min-h-[780px] sm:px-6 sm:pt-36 lg:min-h-[850px] lg:px-8"
         style={{ backgroundImage: "url('/images/background.jpg')" }}
       >
-        <div className="absolute inset-0 bg-[#07111f]/80" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#07111f] via-[#07111f]/80 to-[#07111f]/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#07111f] via-transparent to-[#07111f]/30" />
+        <div className="absolute inset-0 bg-[#07111f]/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#07111f]/75 via-[#07111f]/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#07111f]/70 via-transparent to-[#07111f]/10" />
         <div className="absolute right-10 top-1/3 h-60 w-60 rounded-full bg-cyan-400/10 blur-[100px] sm:h-80 sm:w-80 sm:blur-[130px]" />
 
         <div className="relative z-10 mx-auto w-full max-w-7xl">
@@ -369,9 +517,9 @@ export default function Home() {
             <div className="mt-8 flex w-full flex-col gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:flex-wrap sm:gap-4">
               <a
                 href="#services"
-                className="inline-flex w-full items-center justify-center rounded-xl bg-cyan-400 px-6 py-4 text-center font-bold text-[#07111f] transition hover:-translate-y-1 hover:bg-cyan-300 sm:w-auto sm:px-7"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-cyan-400 px-6 py-4 text-center font-bold text-[#07111f] transition hover:-translate-y-1 hover:bg-cyan-300 sm:w-auto sm:px-7"
               >
-                Découvrir nos services →
+                Découvrir nos services <ArrowRight size={18} />
               </a>
 
               <a
@@ -388,19 +536,19 @@ export default function Home() {
               <p className="text-2xl font-black text-cyan-400 sm:text-3xl">
                 06
               </p>
-              <p className="mt-2 text-xs text-gray-400 sm:text-sm">
+              <p className="mt-2 text-xs text-gray-300 sm:text-sm">
                 Domaines d'expertise
               </p>
             </div>
             <div>
               <p className="text-2xl font-black sm:text-3xl">IT</p>
-              <p className="mt-2 text-xs text-gray-400 sm:text-sm">
+              <p className="mt-2 text-xs text-gray-300 sm:text-sm">
                 Solutions technologiques
               </p>
             </div>
             <div>
               <p className="text-2xl font-black sm:text-3xl">360°</p>
-              <p className="mt-2 text-xs text-gray-400 sm:text-sm">
+              <p className="mt-2 text-xs text-gray-300 sm:text-sm">
                 Approche informatique
               </p>
             </div>
@@ -408,7 +556,7 @@ export default function Home() {
               <p className="text-2xl font-black text-cyan-400 sm:text-3xl">
                 Lomé
               </p>
-              <p className="mt-2 text-xs text-gray-400 sm:text-sm">Togo</p>
+              <p className="mt-2 text-xs text-gray-300 sm:text-sm">Togo</p>
             </div>
           </div>
         </div>
@@ -437,61 +585,68 @@ export default function Home() {
           </div>
 
           <div className="mt-10 grid grid-cols-1 gap-5 sm:mt-14 sm:grid-cols-2 sm:gap-6 lg:mt-16 lg:grid-cols-3">
-            {services.map((service) => (
-              <article
-                key={service.number}
-                className="group min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-[#0b1928] transition duration-300 hover:-translate-y-1 hover:border-cyan-400/40"
-              >
-                <div className="relative h-52 overflow-hidden sm:h-60 lg:h-64">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover transition duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b1928] via-[#0b1928]/10 to-transparent" />
-                  <span className="absolute left-4 top-4 rounded-lg border border-white/20 bg-[#07111f]/70 px-3 py-2 text-xs backdrop-blur-md sm:left-5 sm:top-5">
-                    {service.number}
-                  </span>
-                </div>
+            {services.map((service) => {
+              const ServiceIcon = service.icon;
 
-                <div className="px-5 pb-6 sm:px-6 sm:pb-7">
-                  <h3 className="text-lg font-bold transition group-hover:text-cyan-400 sm:text-xl">
-                    {service.title}
-                  </h3>
-                  <p className="mt-3 leading-7 text-gray-400 sm:mt-4">
-                    {service.description}
-                  </p>
-
-                  <div className="mt-5 border-t border-white/10 pt-5">
-                    <p className="text-xs font-bold uppercase tracking-wider text-cyan-400">
-                      Nos prestations
-                    </p>
-                    <ul className="mt-4 space-y-3">
-                      {service.details.map((detail, index) => (
-                        <li
-                          key={index}
-                          className="flex items-start gap-3 text-sm leading-6 text-gray-400"
-                        >
-                          <span className="mt-0.5 shrink-0 text-cyan-400">
-                            ↗
-                          </span>
-                          <span>{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
+              return (
+                <article
+                  key={service.number}
+                  className="group min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-[#0b1928] transition duration-300 hover:-translate-y-1 hover:border-cyan-400/40"
+                >
+                  <div className="relative">
+                    <ServiceGallery
+                      images={service.images}
+                      title={service.title}
+                    />
+                    <span className="absolute left-4 top-4 z-30 flex h-9 w-9 items-center justify-center rounded-lg border border-white/20 bg-[#07111f]/80 text-cyan-400 backdrop-blur-md">
+                      <ServiceIcon size={19} />
+                    </span>
                   </div>
 
-                  <WhatsAppLink
-                    message={`Bonjour NOVYRA IT, je souhaite obtenir des informations concernant le service : ${service.title}.`}
-                    className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-cyan-400 transition hover:gap-3"
-                  >
-                    Demander ce service →
-                  </WhatsAppLink>
-                </div>
-              </article>
-            ))}
+                  <div className="px-5 pb-6 sm:px-6 sm:pb-7">
+                    <div className="flex items-center justify-between gap-3">
+                      <h3 className="text-lg font-bold transition group-hover:text-cyan-400 sm:text-xl">
+                        {service.title}
+                      </h3>
+                      <span className="text-xs font-bold text-gray-500">
+                        {service.number}
+                      </span>
+                    </div>
+
+                    <p className="mt-3 leading-7 text-gray-400 sm:mt-4">
+                      {service.description}
+                    </p>
+
+                    <div className="mt-5 border-t border-white/10 pt-5">
+                      <p className="text-xs font-bold uppercase tracking-wider text-cyan-400">
+                        Nos prestations
+                      </p>
+                      <ul className="mt-4 space-y-3">
+                        {service.details.map((detail, index) => (
+                          <li
+                            key={index}
+                            className="flex items-start gap-3 text-sm leading-6 text-gray-400"
+                          >
+                            <Check
+                              size={16}
+                              className="mt-1 shrink-0 text-cyan-400"
+                            />
+                            <span>{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <WhatsAppLink
+                      message={`Bonjour NOVYRA IT, je souhaite obtenir des informations concernant le service : ${service.title}.`}
+                      className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-cyan-400 transition hover:gap-3"
+                    >
+                      Demander ce service <ArrowUpRight size={17} />
+                    </WhatsAppLink>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -593,20 +748,26 @@ export default function Home() {
           </div>
 
           <div className="mt-10 grid grid-cols-1 gap-5 sm:mt-14 sm:grid-cols-2 sm:gap-6 lg:mt-16 lg:grid-cols-4">
-            {reasons.map((reason, index) => (
-              <article
-                key={index}
-                className="rounded-2xl border border-white/10 bg-[#0b1928] p-6 transition hover:border-cyan-400/30 sm:p-7"
-              >
-                <div className="text-4xl text-cyan-400">{reason.icon}</div>
-                <h3 className="mt-5 text-lg font-bold sm:mt-6 sm:text-xl">
-                  {reason.title}
-                </h3>
-                <p className="mt-4 leading-7 text-gray-400">
-                  {reason.description}
-                </p>
-              </article>
-            ))}
+            {reasons.map((reason, index) => {
+              const Icon = reason.icon;
+
+              return (
+                <article
+                  key={index}
+                  className="rounded-2xl border border-white/10 bg-[#0b1928] p-6 transition hover:border-cyan-400/30 sm:p-7"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-cyan-400/20 bg-cyan-400/10 text-cyan-400">
+                    <Icon size={25} />
+                  </div>
+                  <h3 className="mt-5 text-lg font-bold sm:mt-6 sm:text-xl">
+                    {reason.title}
+                  </h3>
+                  <p className="mt-4 leading-7 text-gray-400">
+                    {reason.description}
+                  </p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -667,20 +828,26 @@ export default function Home() {
           </div>
 
           <div className="mt-10 grid grid-cols-1 gap-5 sm:mt-14 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
-            {sectors.map((sector, index) => (
-              <article
-                key={index}
-                className="rounded-2xl border border-white/10 bg-[#0b1928] p-6 transition hover:-translate-y-1 hover:border-cyan-400/30 sm:p-7"
-              >
-                <div className="text-4xl text-cyan-400">{sector.icon}</div>
-                <h3 className="mt-5 text-lg font-bold sm:mt-6 sm:text-xl">
-                  {sector.title}
-                </h3>
-                <p className="mt-4 leading-7 text-gray-400">
-                  {sector.description}
-                </p>
-              </article>
-            ))}
+            {sectors.map((sector, index) => {
+              const Icon = sector.icon;
+
+              return (
+                <article
+                  key={index}
+                  className="rounded-2xl border border-white/10 bg-[#0b1928] p-6 transition hover:-translate-y-1 hover:border-cyan-400/30 sm:p-7"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-cyan-400/20 bg-cyan-400/10 text-cyan-400">
+                    <Icon size={25} />
+                  </div>
+                  <h3 className="mt-5 text-lg font-bold sm:mt-6 sm:text-xl">
+                    {sector.title}
+                  </h3>
+                  <p className="mt-4 leading-7 text-gray-400">
+                    {sector.description}
+                  </p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -707,10 +874,11 @@ export default function Home() {
             </p>
 
             <WhatsAppLink
-              className="mt-7 inline-flex text-left text-cyan-400 transition hover:text-cyan-300 sm:mt-8"
+              className="mt-7 inline-flex items-center gap-2 text-left text-cyan-400 transition hover:text-cyan-300 sm:mt-8"
               message="Bonjour NOVYRA IT, j'ai une question concernant vos services."
             >
-              Vous avez une autre question ? Contactez-nous ↗
+              Vous avez une autre question ? Contactez-nous{" "}
+              <ArrowUpRight size={17} />
             </WhatsAppLink>
           </div>
 
@@ -733,7 +901,7 @@ export default function Home() {
                       {faq.question}
                     </span>
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-cyan-400/20 text-cyan-400">
-                      {isOpen ? "−" : "+"}
+                      {isOpen ? <X size={17} /> : <ArrowRight size={17} />}
                     </span>
                   </button>
 
@@ -780,31 +948,43 @@ export default function Home() {
               <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-4">
                 <WhatsAppLink
                   message="Bonjour NOVYRA IT, je souhaite discuter de mon projet et obtenir des informations sur vos services."
-                  className="inline-flex w-full items-center justify-center rounded-xl bg-cyan-400 px-6 py-4 text-center font-bold text-[#07111f] transition hover:bg-cyan-300 sm:w-auto sm:px-7"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-cyan-400 px-6 py-4 text-center font-bold text-[#07111f] transition hover:bg-cyan-300 sm:w-auto sm:px-7"
                 >
-                  Contacter sur WhatsApp ↗
+                  <Phone size={18} />
+                  Contacter sur WhatsApp
+                  <ArrowUpRight size={17} />
                 </WhatsAppLink>
 
                 <a
                   href={`mailto:${EMAIL}`}
-                  className="inline-flex w-full items-center justify-center rounded-xl border border-white/15 px-6 py-4 text-center font-semibold transition hover:border-cyan-400 hover:text-cyan-400 sm:w-auto sm:px-7"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 px-6 py-4 text-center font-semibold transition hover:border-cyan-400 hover:text-cyan-400 sm:w-auto sm:px-7"
                 >
+                  <Mail size={18} />
                   Envoyer un e-mail
                 </a>
               </div>
 
               <div className="mt-10 grid gap-6 border-t border-white/10 pt-7 sm:mt-14 sm:grid-cols-2 sm:gap-8 sm:pt-9 lg:grid-cols-3">
                 <div>
-                  <p className="text-sm text-gray-500">Téléphone / WhatsApp</p>
+                  <p className="flex items-center gap-2 text-sm text-gray-500">
+                    <Phone size={16} className="text-cyan-400" />
+                    Téléphone / WhatsApp
+                  </p>
                   <a
                     href={`https://wa.me/${PHONE}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="mt-2 inline-block font-semibold transition hover:text-cyan-400"
                   >
                     +228 98 01 05 55
                   </a>
                 </div>
+
                 <div>
-                  <p className="text-sm text-gray-500">E-mail</p>
+                  <p className="flex items-center gap-2 text-sm text-gray-500">
+                    <Mail size={16} className="text-cyan-400" />
+                    E-mail
+                  </p>
                   <a
                     href={`mailto:${EMAIL}`}
                     className="mt-2 inline-block break-all font-semibold transition hover:text-cyan-400"
@@ -812,8 +992,12 @@ export default function Home() {
                     {EMAIL}
                   </a>
                 </div>
+
                 <div>
-                  <p className="text-sm text-gray-500">Localisation</p>
+                  <p className="flex items-center gap-2 text-sm text-gray-500">
+                    <MapPin size={16} className="text-cyan-400" />
+                    Localisation
+                  </p>
                   <p className="mt-2 font-semibold">Lomé, Togo</p>
                 </div>
               </div>
@@ -823,12 +1007,9 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-
       <footer className="border-t border-white/10 bg-[#050d17] px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          {/* Contenu principal */}
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-16">
-            {/* Présentation */}
             <div className="flex flex-col items-center text-center lg:col-span-2">
               <Brand />
 
@@ -842,7 +1023,6 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Contact */}
             <div className="flex flex-col items-center text-center">
               <h3 className="text-lg font-bold text-white">Nous contacter</h3>
 
@@ -851,45 +1031,52 @@ export default function Home() {
                   href={`https://wa.me/${PHONE}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition hover:text-cyan-400"
+                  className="flex items-center gap-2 transition hover:text-cyan-400"
                 >
+                  <Phone size={16} />
                   WhatsApp : +228 98 01 05 55
                 </a>
 
                 <a
                   href={`mailto:${EMAIL}`}
-                  className="break-all transition hover:text-cyan-400"
+                  className="flex items-center gap-2 break-all transition hover:text-cyan-400"
                 >
+                  <Mail size={16} />
                   {EMAIL}
                 </a>
 
-                <p>Lomé, Togo</p>
+                <p className="flex items-center gap-2">
+                  <MapPin size={16} />
+                  Lomé, Togo
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Bas du footer */}
+          
           <div className="mt-12 flex flex-col items-center justify-center gap-4 border-t border-white/10 pt-7 text-center">
             <p className="text-xs text-gray-500 sm:text-sm">
-             
+              © 2026 NOVYRA IT. Tous droits réservés.
             </p>
-
             <p className="text-xs font-medium tracking-wide text-gray-400 sm:text-sm">
               Connecter. Administrer. Protéger.
             </p>
           </div>
+
         </div>
       </footer>
 
       {/* FLOATING WHATSAPP */}
       <a
-        href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Bonjour NOVYRA IT, je souhaite obtenir des informations.")}`}
+        href={`https://wa.me/${PHONE}?text=${encodeURIComponent(
+          "Bonjour NOVYRA IT, je souhaite obtenir des informations.",
+        )}`}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contacter NOVYRA IT sur WhatsApp"
-        className="fixed bottom-4 right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-cyan-300/30 bg-cyan-400 text-xl text-[#07111f] shadow-xl shadow-cyan-900/30 transition hover:scale-110 hover:bg-cyan-300 sm:bottom-6 sm:right-6 sm:h-14 sm:w-14 sm:text-2xl"
+        className="fixed bottom-4 right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-cyan-300/30 bg-cyan-400 text-[#07111f] shadow-xl shadow-cyan-900/30 transition hover:scale-110 hover:bg-cyan-300 sm:bottom-6 sm:right-6 sm:h-14 sm:w-14"
       >
-        ☎
+        <Phone size={23} />
       </a>
     </main>
   );
